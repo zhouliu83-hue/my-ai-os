@@ -1,0 +1,23 @@
+# 系统
+.DS_Store
+Thumbs.db
+*.log
+
+# 敏感信息
+.env
+*.key
+secrets/
+
+# 临时文件
+temp/
+tmp/
+*.tmp
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 记忆缓存
+6_memory/sessions/.cache/
