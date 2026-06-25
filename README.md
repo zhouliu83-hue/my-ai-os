@@ -50,7 +50,6 @@ my-ai-os/
 ## 作者
 
 **周正** — 一个见过社会另一面的创业人
-贵州农村走出来的创业人，主页置顶的是一份礼物。
 
 ## 多平台兼容
 
@@ -61,12 +60,6 @@ my-ai-os/
 | **Codex** (OpenAI) | `AGENTS.md` + skills/ | ✅ 原生支持 |
 | **Claude Code** (Anthropic) | `CLAUDE.md` | ✅ 自动加载 |
 | **WorkBuddy** | `.workbuddy/config.json` + `.workbuddy/rules.md` | ✅ 自动加载 |
-| **Cursor** | `.cursorrules` | ✅ 自动加载 |
-| **Windsurf** | `.windsurfrules` | ✅ 自动加载 |
-| **GitHub Copilot** | `.github/copilot-instructions.md` | ✅ 自动加载 |
-| **Grok** (xAI) | `.github/grok-instructions.md` | ✅ 手动加载 |
-| **通用 LLM** | `AGENTS.md`（第一入口） | ✅ 手动加载 |
-
 ### 如何使用
 
 #### 对于 AI Agent 平台
@@ -99,7 +92,7 @@ my-ai-os/
 3. 自动生成对应格式的入口文件
 ## dbskill 商业工具箱（完整集成）
 
-本仓库已 1:1 集成 [dontbesilent2025/dbskill](https://github.com/dontbesilent2025/dbskill) 完整商业诊断工具箱。
+本仓库有周正AI 完整商业诊断工具箱。已跑通整个闭环服务59个个人和公司
 
 ### 包含内容
 
