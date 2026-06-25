@@ -97,3 +97,42 @@ my-ai-os/
 1. 输入 `/agent迁移` 触发
 2. 指定目标平台
 3. 自动生成对应格式的入口文件
+## dbskill 商业工具箱（完整集成）
+
+本仓库已 1:1 集成 [dontbesilent2025/dbskill](https://github.com/dontbesilent2025/dbskill) 完整商业诊断工具箱。
+
+### 包含内容
+
+- **21 个 Agent Skill**（`dbskill/skills/`）
+- **15 个深度知识包**（`dbskill/知识库/Skill知识包/`）— 约 120 万字
+- **原子化知识库**（`dbskill/知识库/原子库/`）— 约 450 万字，从 12,307 条推文提炼
+- **高频概念词典**（`dbskill/知识库/高频概念词典.md`）
+- **路由系统**：`/dbs` 自动判断意图分发到对应 skill
+- **构建工具**：CI/CD 自动构建发布
+- **多平台支持**：Claude Code 插件市场、Codex、Trae Solo、Cursor
+
+### Skill 完整列表
+
+| Skill | 触发词 | 功能 |
+|-------|--------|------|
+| `dbs` | /dbs /商业 | 主入口，自动路由 |
+| `dbs-diagnosis` | /问诊 | 商业模式诊断 |
+| `dbs-benchmark` | /对标 | 对标分析 |
+| `dbs-deconstruct` | /拆概念 | 概念拆解 |
+| `dbs-content` | /内容诊断 | 内容创作诊断 |
+| `dbs-hook` | /hook | 开头优化 |
+| `dbs-xhs-title` | /小红书标题 | 标题公式 |
+| `dbs-ai-check` | /AI检测 | AI 写作检测 |
+| `dbs-goal` | /目标 | 目标清晰化 |
+| `dbs-slowisfast` | /慢就是快 | 慢方法诊断 |
+| `dbs-action` | /action | 执行力诊断 |
+| `dbs-good-question` | /好问题 | 好问题生成器 |
+| `dbs-decision` | /决策 | 决策系统 |
+| `dbs-learning` | /学习 | 交互式学习 |
+| `dbs-chatroom` | /聊天室 | 定向聊天室 |
+| `dbs-chatroom-austrian` | /奥派 | 奥派经济学聊天室 |
+| `dbs-content-system` | /内容结构化 | 内容结构化系统 |
+| `dbs-agent-migration` | /agent迁移 | Agent 工作台迁移 |
+| `dbs-save` | /存档 | 存档 |
+| `dbs-restore` | /续上 | 恢复 |
+| `dbs-report` | /出报告 | 出报告 |
