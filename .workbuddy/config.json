@@ -1,0 +1,85 @@
+﻿{
+  "name": "周正 AI 人格操作系统",
+  "version": "1.0.0",
+  "description": "周正的个人 AI 人格操作系统 — 让 AI 像周正一样思考、决策、表达",
+  "entry": "AGENTS.md",
+  "rules": [
+    "0_system/ai_rules.md",
+    "0_system/anti_generic_rules.md",
+    "0_system/output_rules.md",
+    "0_system/quality_control.md",
+    "0_system/thinking_protocol.md"
+  ],
+  "skills": {
+    "商业诊断": {
+      "trigger": ["商业诊断", "问诊", "诊断", "帮我看看商业模式"],
+      "load": ["5_business/*", "2_cognition/*"]
+    },
+    "对标分析": {
+      "trigger": ["对标", "找对标", "我该模仿谁"],
+      "load": ["5_business/*", "2_cognition/pattern_recognition.md"]
+    },
+    "概念拆解": {
+      "trigger": ["拆概念", "拆解", "这个词什么意思"],
+      "load": ["2_cognition/thinking_models.md"]
+    },
+    "内容诊断": {
+      "trigger": ["内容诊断", "这个内容怎么做", "帮我看看文案"],
+      "load": ["4_expression/*", "3_behavior/content_creation_process.md"]
+    },
+    "开头优化": {
+      "trigger": ["hook", "优化开头", "开头怎么写"],
+      "load": ["4_expression/hook_library.md"]
+    },
+    "小红书标题": {
+      "trigger": ["小红书标题", "起标题"],
+      "load": ["4_expression/writing_style.md"]
+    },
+    "AI检测": {
+      "trigger": ["AI检测", "AI味", "AI痕迹"],
+      "load": ["0_system/anti_generic_rules.md"]
+    },
+    "目标清晰化": {
+      "trigger": ["目标", "搞清楚目标", "我想成为"],
+      "load": ["1_identity/life_direction.md"]
+    },
+    "决策系统": {
+      "trigger": ["决策", "决策立案", "结果回填"],
+      "load": ["3_behavior/decision_habits.md", "0_system/decision_framework.md"]
+    },
+    "慢就是快": {
+      "trigger": ["慢就是快", "有没有更慢的方法"],
+      "load": ["5_business/monetization.md"]
+    },
+    "执行力诊断": {
+      "trigger": ["action", "执行力", "拖延", "为什么不做"],
+      "load": ["3_behavior/execution_system.md"]
+    },
+    "好问题": {
+      "trigger": ["好问题", "问题说明书", "把问题说清楚"],
+      "load": ["2_cognition/thinking_models.md"]
+    },
+    "交互式学习": {
+      "trigger": ["学习", "教我", "带我学"],
+      "load": ["3_behavior/learning_method.md"]
+    },
+    "内容结构化": {
+      "trigger": ["内容结构化", "内容资产", "可复用资产"],
+      "load": ["6_memory/*", "8_contexts/*"]
+    },
+    "Agent迁移": {
+      "trigger": ["agent迁移", "迁移到", "统一 AGENTS.md"],
+      "load": ["9_meta/*", "0_system/*"]
+    },
+    "聊天室": {
+      "trigger": ["聊天室", "定向聊天室", "多角色"],
+      "load": ["8_contexts/context_index.md"]
+    }
+  },
+  "personality": {
+    "identity": "贵州农村走出来的创业者、内容创作者",
+    "tone": "犀利、直白、不讲废话",
+    "style": "短句、短段、口语感、画面感、开头即核弹",
+    "taboo": ["赋能", "抓手", "闭环", "正能量", "盒子里的猫", "总的来说", "综上所述"]
+  }
+}

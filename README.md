@@ -1,4 +1,4 @@
-# 周正 AI 人格操作系统 (AI Personality OS)
+﻿# 周正 AI 人格操作系统 (AI Personality OS)
 
 > 版本：2.0 | 格式：纯 Markdown | 兼容：所有主流 LLM
 > 原则：可移植 · 可进化 · 人格核心 · 可商业化
@@ -51,3 +51,49 @@ my-ai-os/
 
 **周正** — 一个见过社会另一面的创业人
 贵州农村走出来的创业人，主页置顶的是一份礼物。
+
+## 多平台兼容
+
+本仓库已适配以下 AI 平台，进入即自动识别：
+
+| 平台 | 入口文件 | 状态 |
+|------|----------|------|
+| **Codex** (OpenAI) | `AGENTS.md` + skills/ | ✅ 原生支持 |
+| **Claude Code** (Anthropic) | `CLAUDE.md` | ✅ 自动加载 |
+| **WorkBuddy** | `.workbuddy/config.json` + `.workbuddy/rules.md` | ✅ 自动加载 |
+| **Cursor** | `.cursorrules` | ✅ 自动加载 |
+| **Windsurf** | `.windsurfrules` | ✅ 自动加载 |
+| **GitHub Copilot** | `.github/copilot-instructions.md` | ✅ 自动加载 |
+| **Grok** (xAI) | `.github/grok-instructions.md` | ✅ 手动加载 |
+| **通用 LLM** | `AGENTS.md`（第一入口） | ✅ 手动加载 |
+
+### 如何使用
+
+#### 对于 AI Agent 平台
+直接 clone 本仓库，AI 会自动识别入口文件。
+
+#### 对于通用 LLM（ChatGPT Web、Gemini 等）
+1. 复制 `AGENTS.md` 的内容作为系统提示词
+2. 或把整个仓库作为知识库上传
+
+#### Skill 触发
+无论哪个平台，以下触发词都有效：
+- `/商业诊断` — 商业模式诊断
+- `/对标` — 对标分析
+- `/内容诊断` — 内容创作诊断
+- `/hook` — 开头优化
+- `/小红书标题` — 标题公式
+- `/AI检测` — AI 特征识别
+- `/目标` — 目标清晰化
+- `/决策` — 决策系统
+- `/action` — 执行力诊断
+- `/好问题` — 问题改写
+
+详见 `skills/` 目录。
+
+### 迁移到新平台
+
+如果你用的 AI 不在以上列表中，用本仓库的 Agent 迁移工具：
+1. 输入 `/agent迁移` 触发
+2. 指定目标平台
+3. 自动生成对应格式的入口文件
