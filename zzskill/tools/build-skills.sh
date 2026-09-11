@@ -19,21 +19,23 @@ trap 'rm -rf "$INNER_DIR"' EXIT
 # skill 名 → 分组目录
 group_for() {
   case "$1" in
-    zz)
+    zz|zz-update)
       echo "必装入口" ;;
-    zz-diagnosis|zz-deconstruct|zz-goal|zz-good-question|zz-slowisfast|zz-action)
+    zz-diagnosis|zz-standard-answer|zz-theory-grounding|zz-deconstruct|zz-goal|zz-good-question|zz-jtbd|zz-action)
       echo "看商业问题" ;;
-    zz-content|zz-benchmark|zz-hook|zz-xhs-title|zz-ai-check)
+    zz-content|zz-content-risk-check|zz-benchmark|zz-hook|zz-xhs-title|zz-ai-check|zz-wechat-html|zz-spread|zz-resonate|zz-script-flow|zz-video-extract)
       echo "做内容" ;;
     zz-content-system)
       echo "进阶-内容工程" ;;
+    zz-knowledge)
+      echo "进阶-知识库" ;;
     zz-chatroom|zz-chatroom-austrian)
       echo "进阶-聊天室" ;;
     zz-save|zz-restore|zz-report)
       echo "进阶-状态管理" ;;
     zz-decision)
       echo "进阶-决策系统" ;;
-    zz-agent-migration)
+    zz-agent-migration|zz-install-skill|zz-skill-maker)
       echo "进阶-Agent基建" ;;
     zz-learning)
       echo "进阶-学习" ;;
@@ -79,6 +81,26 @@ build_one() {
     cp -R "$skill_dir/tools/." "$stage_dir/tools/"
   fi
 
+  if [ -d "$skill_dir/scripts" ]; then
+    mkdir -p "$stage_dir/scripts"
+    cp -R "$skill_dir/scripts/." "$stage_dir/scripts/"
+  fi
+
+  if [ -d "$skill_dir/agents" ]; then
+    mkdir -p "$stage_dir/agents"
+    cp -R "$skill_dir/agents/." "$stage_dir/agents/"
+  fi
+
+  if [ -d "$skill_dir/references" ]; then
+    mkdir -p "$stage_dir/references"
+    cp -R "$skill_dir/references/." "$stage_dir/references/"
+  fi
+
+  if [ -d "$skill_dir/assets" ]; then
+    mkdir -p "$stage_dir/assets"
+    cp -R "$skill_dir/assets/." "$stage_dir/assets/"
+  fi
+
   refs="$(grep -Eo '知识库/[^`,。 、)]*\.md' "$skill_dir/SKILL.md" || true)"
   if [ -n "$refs" ]; then
     while IFS= read -r ref; do
@@ -98,8 +120,11 @@ import zipfile
 source_dir, archive_path = sys.argv[1], sys.argv[2]
 
 with zipfile.ZipFile(archive_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
-    for root, _, files in os.walk(source_dir):
+    for root, dirs, files in os.walk(source_dir):
+        dirs[:] = [dirname for dirname in dirs if dirname != "__pycache__"]
         for filename in files:
+            if filename.endswith((".pyc", ".pyo")):
+                continue
             path = os.path.join(root, filename)
             archive.write(path, os.path.relpath(path, source_dir))
 PY
@@ -108,9 +133,21 @@ PY
   echo "built $group/${name}.zip"
 }
 
-for skill_md in "$ROOT_DIR"/skills/*/SKILL.md; do
-  build_one "$(dirname "$skill_md")"
-done
+while IFS= read -r skill_ref; do
+  [ -n "$skill_ref" ] || continue
+  build_one "$ROOT_DIR/$skill_ref"
+done < <(
+  python3 - "$ROOT_DIR/.claude-plugin/plugin.json" <<'PY'
+import json
+import sys
+
+with open(sys.argv[1], encoding="utf-8") as file:
+    manifest = json.load(file)
+
+for skill_ref in manifest.get("skills", []):
+    print(skill_ref.removeprefix("./"))
+PY
+)
 
 cat > "$INNER_DIR/README.md" <<EOF
 # zzskill ${VERSION}
@@ -120,27 +157,39 @@ Trae Solo 一个 zip 装一个 skill。本压缩包按使用场景分了几个�
 ## 必装入口
 
 - **zz** — 主入口，根据你的问题自动路由到合适的诊断 skill。其他 skill 都依赖它，先装这个。
+- **zz-update** — 更新 zzskill。安装后直接对 Agent 说「更新 zzskill」。
 
 ## 看商业问题
 
-- **zz-diagnosis** — 商业模式诊断（问诊 + 体检两种模式）
+- **zz-diagnosis** — 商业模式诊断（根据用户问题自动选择诊断流程）
+- **zz-theory-grounding** — 理论溯源与案例重释（审查命题、核实理论来源并标明适用边界）
+- **zz-standard-answer** — 理论挖掘与历史同构研究（先找相关领域、作者和理论，再提炼带条件的历史答案）
 - **zz-deconstruct** — 概念拆解（维特根斯坦 + 奥派经济学）
 - **zz-goal** — 目标清晰化（把「我想做个人 IP」这种愿望语法审计成可检查的交付物）
 - **zz-good-question** — 好问题生成器（把模糊问题改成 Agent 可推理、可验证的问题说明书）
-- **zz-slowisfast** — 慢就是快（找看起来更慢但长期更快的方法）
+- **zz-jtbd** — JTBD 任务澄清（识别情境中的进展、切换力量与选择标准）
 - **zz-action** — 执行力诊断（阿德勒心理学，「知道该做但就是不做」）
 
 ## 做内容
 
 - **zz-content** — 内容创作诊断
+- **zz-content-risk-check** — 内容发布风险检查（区分机器审核信号与内容实质问题，给出最小修改动作）
 - **zz-benchmark** — 对标分析
 - **zz-hook** — 短视频开头优化
 - **zz-xhs-title** — 小红书标题公式（75 个验证过的爆款公式）
 - **zz-ai-check** — AI 写作特征识别
+- **zz-wechat-html** — 微信公众号 HTML 生成（15 种经典风格，支持预览和全量生成）
+- **zz-spread** — 传播心理解码
+- **zz-resonate** — 文稿共鸣诊断
+- **zz-video-extract** — 短视频信息提取（查询作品／账号数据并生成语音文字稿）
 
 ## 进阶-内容工程
 
 - **zz-content-system** — 内容结构化系统（把本地大量内容资产搭成可继续生长的内容工程）
+
+## 进阶-知识库
+
+- **zz-knowledge** — 文件夹知识库（让 Agent 稳定查找、收录、调用和维护本地资料）
 
 ## 进阶-聊天室
 
@@ -161,7 +210,9 @@ Trae Solo 一个 zip 装一个 skill。本压缩包按使用场景分了几个�
 
 ## 进阶-Agent基建
 
-- **zz-agent-migration** — Agent 工作台迁移（Claude Code / Codex / Grok 三端一致）
+- **zz-agent-migration** — Agent 工作台迁移（Claude Code / Codex / Grok / 通用 Agents 多端一致）
+- **zz-install-skill** — 多端 Skill 安装与同步（安装、查看或卸载本地与外部 Skill）
+- **zz-skill-maker** — 单个 Skill 制作器（需求分析、真实文件、分级验证与可选 GitHub 发布）
 
 ## 进阶-学习
 

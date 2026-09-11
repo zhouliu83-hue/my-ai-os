@@ -1,10 +1,6 @@
 ---
 name: zz-good-question
-description: |
-  dontbesilent 好问题生成器。把模糊问题改写成 Agent 可推理、可批评、可验证的问题说明书，并判断它能被自动化解决到什么程度。
-  触发方式：/zz-good-question、/好问题、/问题说明书、/Agent可解性、「这个问题能不能自动化解决」「帮我把问题说清楚」
-  Turn fuzzy problems into agent-solvable problem briefs and evaluate automation readiness.
-  Trigger: /zz-good-question, "clarify this problem", "can an agent solve this"
+description: 把模糊问题改写成 Agent 可推理、可批评、可验证的问题说明书，并判断自动化解决程度。用户要求把问题说清、生成好问题或评估 Agent 可解性时使用。
 ---
 
 # zz-good-question：好问题生成器
@@ -436,24 +432,6 @@ Agent 可以生成候选解释，但很多问题的答案藏在现实互动里�
 
 ---
 
-## 和其他 skill 的关系
-
-先用本 skill 把问题断点、未知项、反馈入口写清楚。只有当用户要进入具体解决方案时，才转其他 skill。
-
-| 情况 | 推荐 |
-|---|---|
-| 问题本身涉及商业模式成立与否 | 转 `/zz-diagnosis` |
-| 问题里有核心词没有定义 | 转 `/zz-deconstruct` |
-| 问题其实是模糊目标 | 转 `/zz-goal` |
-| 问题指向内容表现，且已经形成清楚断点 | 转 `/zz-content` 或 `/zz-hook` |
-| 问题指向对标选择 | 转 `/zz-benchmark` |
-| 问题已经写清楚，接下来要长期跟踪选择、结果和修正 | 转 `/zz-decision` |
-| 问题清楚但用户做不动 | 转 `/zz-action` |
-| 用户想系统学习某个理论 | 转 `/zz-learning` |
-| 用户想多角色发散后收敛 | 转 `/zz-chatroom` |
-
----
-
 ## 说话风格
 
 1. **先钉现象，再谈解释。**
@@ -469,3 +447,8 @@ Agent 可以生成候选解释，但很多问题的答案藏在现实互动里�
 
 - 用户用中文就用中文，用英文就用英文。
 - 中文回复遵循《中文文案排版指北》。
+
+
+---
+
+完成当前任务后直接结束。只有用户明确询问下一步，且当前环境已经安装 `/zz` 时，简短提示：「下一步不确定时，可以输入 `/zz`。」

@@ -95,40 +95,28 @@ my-ai-os/
 本仓库集成了完整的商业诊断工具箱，用于「周正商业IP」的诊断与内容服务。
 
 > **来源声明**：`zzskill/` 改编自 [dontbesilent2025/dbskill](https://github.com/dontbesilent2025/dbskill)（作者 [dontbesilent](https://x.com/dontbesilent)，License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)）。
-> 本仓库仅做标识符重命名与路径适配（`dbs` → `zz`、`dbskill` → `zzskill`），方法论与知识库内容未作修改。原许可为非商业性使用，商用需向原作者取得授权。
+> 同步版本：**v2.18.40**。本仓库仅做标识符重命名与路径适配（`dbs` → `zz`、`dbskill` → `zzskill`），并把安装命令指向本仓库；方法论、Skill 提示词与知识库内容未作修改。
+> 原许可为非商业性使用，商用需向原作者取得授权。
 
 ### 包含内容
 
-- **21 个 Agent Skill**（`zzskill/skills/`）
-- **15 个深度知识包**（`zzskill/知识库/Skill知识包/`）— 约 120 万字
-- **原子化知识库**（`zzskill/知识库/原子库/`）— 约 450 万字，从 12,307 条推文提炼
-- **高频概念词典**（`zzskill/知识库/高频概念词典.md`）
-- **路由系统**：`/zz` 自动判断意图分发到对应 skill
-- **构建工具**：CI/CD 自动构建发布
-- **多平台支持**：Claude Code 插件市场、Codex、Trae Solo、Cursor
+- **33 个 Agent Skill**（`zzskill/skills/`）——32 个业务 Skill + 1 个系统更新入口
+- **17 个深度知识包**（`zzskill/知识库/Skill知识包/`）
+- **原子化知识库**（`zzskill/知识库/原子库/`）— 4,176 个知识原子，从 16,152 条公开推文提炼
+- **公开推文集**（`zzskill/books/`）
+- **路由系统**：`/zz` 按任务复杂度判断单 Skill 或主辅组合，并生成可直接发送的提示词
+- **多语言文档**：简体中文 / English / 日本語 / 한국어 / 繁體中文
+- **多平台支持**：豆包、WorkBuddy、Claude Code、Codex
 
 ### Skill 完整列表
 
-| Skill | 触发词 | 功能 |
-|-------|--------|------|
-| `zz` | /zz /商业 | 主入口，自动路由 |
-| `zz-diagnosis` | /问诊 | 商业模式诊断 |
-| `zz-benchmark` | /对标 | 对标分析 |
-| `zz-deconstruct` | /拆概念 | 概念拆解 |
-| `zz-content` | /内容诊断 | 内容创作诊断 |
-| `zz-hook` | /hook | 开头优化 |
-| `zz-xhs-title` | /小红书标题 | 标题公式 |
-| `zz-ai-check` | /AI检测 | AI 写作检测 |
-| `zz-goal` | /目标 | 目标清晰化 |
-| `zz-slowisfast` | /慢就是快 | 慢方法诊断 |
-| `zz-action` | /action | 执行力诊断 |
-| `zz-good-question` | /好问题 | 好问题生成器 |
-| `zz-decision` | /决策 | 决策系统 |
-| `zz-learning` | /学习 | 交互式学习 |
-| `zz-chatroom` | /聊天室 | 定向聊天室 |
-| `zz-chatroom-austrian` | /奥派 | 奥派经济学聊天室 |
-| `zz-content-system` | /内容结构化 | 内容结构化系统 |
-| `zz-agent-migration` | /agent迁移 | Agent 工作台迁移 |
-| `zz-save` | /存档 | 存档 |
-| `zz-restore` | /续上 | 恢复 |
-| `zz-report` | /出报告 | 出报告 |
+| 分类 | Skill |
+|------|-------|
+| 商业诊断 | `zz` · `zz-diagnosis` · `zz-benchmark` · `zz-action` · `zz-goal` |
+| 思考工具 | `zz-theory-grounding` · `zz-standard-answer` · `zz-deconstruct` · `zz-good-question` · `zz-jtbd` · `zz-chatroom` · `zz-chatroom-austrian` |
+| 内容创作 | `zz-content` · `zz-hook` · `zz-xhs-title` · `zz-ai-check` · `zz-wechat-html` · `zz-video-extract` · `zz-content-risk-check` · `zz-resonate` · `zz-script-flow` · `zz-spread` |
+| 状态管理 | `zz-save` · `zz-restore` · `zz-report` · `zz-decision` |
+| 学习 | `zz-learning` |
+| 工作台基建 | `zz-update` · `zz-content-system` · `zz-knowledge` · `zz-agent-migration` · `zz-install-skill` · `zz-skill-maker` |
+
+每个 Skill 的适用时机、输入示例与产出，见 [`zzskill/docs/新手入门.md`](zzskill/docs/新手入门.md)。

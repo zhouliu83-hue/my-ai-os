@@ -3,7 +3,7 @@
 # Usage: ./scripts/record-demo.sh
 # Output: demo.gif in repo root
 #
-# Auto-detects marketplace repo: uses upstream (zhouliu83-hue/my-ai-os) if its
+# Auto-detects marketplace repo: uses upstream (dontbesilent2025/dbskill) if its
 # default branch has .claude-plugin/marketplace.json, otherwise falls back to
 # origin fork. After upstream PR merge, re-running this script will automatically
 # produce a demo pointing at the canonical repo.
@@ -46,7 +46,7 @@ detect_marketplace_repo() {
     echo "$origin"
     return
   fi
-  echo "zhouliu83-hue/my-ai-os"
+  echo "dontbesilent2025/dbskill"
 }
 
 # Remove previously installed demo plugins (safe to call when nothing is installed)
