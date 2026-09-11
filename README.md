@@ -93,11 +93,6 @@ my-ai-os/
 ## zzskill 商业工具箱（完整集成）
 
 本仓库集成了完整的商业诊断工具箱，用于「周正商业IP」的诊断与内容服务。
-
-> **来源声明**：`zzskill/` 改编自 [dontbesilent2025/dbskill](https://github.com/dontbesilent2025/dbskill)（作者 [dontbesilent](https://x.com/dontbesilent)，License: [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)）。
-> 同步版本：**v2.18.40**。本仓库仅做标识符重命名与路径适配（`dbs` → `zz`、`dbskill` → `zzskill`），并把安装命令指向本仓库；方法论、Skill 提示词与知识库内容未作修改。
-> 原许可为非商业性使用，商用需向原作者取得授权。
-
 ### 包含内容
 
 - **33 个 Agent Skill**（`zzskill/skills/`）——32 个业务 Skill + 1 个系统更新入口
